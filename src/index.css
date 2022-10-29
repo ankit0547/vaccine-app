@@ -3,6 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    background-color: aliceblue;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +11,53 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app-loader{
+  position: absolute;
+  background-color: #383b3b8c;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
+
+.app-loader .spinner-border{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+/* .main{
+  background-color: aliceblue;
+} */
+
+.sidebar{
+  width: 230px;
+}
+
+.sidebar button {
+  margin-bottom: 1rem;
+  background-color: bisque;
+}
+
+.navbar-brand{
+  cursor: pointer;
+}
+
+.dashboard-main{
+margin-left: 1rem;
+height: calc(100vh - 7rem);
+width: 100%;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-color: white;
+padding: 1rem;
+}
+
+.card-container .card {
+  margin-right: 2rem;
+  max-width: 12rem;
+  width: 100%;
+}
+
+.student-form{
+  /* width: 300px; */
 }
