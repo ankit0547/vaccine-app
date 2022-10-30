@@ -11,11 +11,11 @@ const LandingPage = () => {
       payload: true,
     });
     try {
-      const data = await axios.get("https://api.agify.io/?name=shweta");
+      const data = await axios.get("http://localhost:4000/api/v1/landing");
       if (data) {
         appActionDispatch({
           type: appActionTypes.setAppData,
-          payload: data.data,
+          payload: data.data.data,
         });
         appActionDispatch({
           type: appActionTypes.setLoader,
@@ -40,23 +40,24 @@ const LandingPage = () => {
         <div className='card'>
           <div className='card-body'>
             <h6 className='card-title'>Number of students vaccinated</h6>
-            <span className='card-text'>20/100</span>
+            <span className='card-text'>{`${appData?.vaccinatedStudents}/${appData?.studentsCount}`}</span>
           </div>
         </div>
         <div className='card'>
           <div className='card-body'>
             <h6 className='card-title'>Upcoming vaccination drives</h6>
-            <span className='card-text'>No Drive</span>
+            <span className='card-text'>
+              {appData?.drivesCount === 0 ? "No Drive" : appData?.drivesCount}
+            </span>
           </div>
         </div>
-        <div className='card'>
+        {/* <div className='card'>
           <div className='card-body'>
-            {/* {loading ? "Loading..." : JSON.stringify(appData, null, 3)} */}
             {JSON.stringify(appData, null, 3)}
           </div>
-        </div>
+        </div> */}
 
-        <button
+        {/* <button
           type='button'
           class='btn btn-primary'
           data-bs-toggle='modal'
@@ -129,7 +130,7 @@ const LandingPage = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   );

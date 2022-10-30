@@ -7,6 +7,7 @@ const initialAppState = {
   defaultLandingPage: 0,
   appData: null,
   loading: false,
+  studentData: [],
 };
 
 const AppStore = createContext(initialAppState);
@@ -17,6 +18,7 @@ const appActionTypes = {
   setCurrentLandingPage: "SET_CURRENT_LANDING_PAGE",
   setAppData: "SET_APP_DATA",
   IncCounter: "INC_COUNTER",
+  setStudentData: "SET_STUDENT_DATA",
 };
 
 const AppReducer = (state, action) => {
@@ -41,6 +43,10 @@ const AppReducer = (state, action) => {
     case appActionTypes.setAppData:
       return produce(state, (draftState) => {
         draftState.appData = action.payload;
+      });
+    case appActionTypes.setStudentData:
+      return produce(state, (draftState) => {
+        draftState.studentData = action.payload;
       });
 
     default:

@@ -61,3 +61,7 @@ padding: 1rem;
 .student-form{
   /* width: 300px; */
 }
+
+.error{
+  color: red;
+}
