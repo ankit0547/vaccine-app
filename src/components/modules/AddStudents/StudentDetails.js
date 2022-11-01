@@ -13,11 +13,6 @@ const StudentDetailschema = Yup.object().shape({
 
 const StudentDetails = () => {
   const { appActionDispatch } = useContext(AppStore);
-  // const [student, setStudent] = React.useState({
-  //   studentName: "",
-  //   vaccineName: "",
-  // });
-
   const getAllStudentsData = async () => {
     appActionDispatch({
       type: appActionTypes.setLoader,
@@ -42,13 +37,18 @@ const StudentDetails = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (payload) => {
     debugger;
-    e.preventDefault();
+    // e.preventDefault();
+    // const payload = {
+    //   studentName: f,
+    //     vaccineName: "",?
+    // };
+    // console.log("EEEE", e);
     try {
       const data = await axios.post(
-        "http://localhost:4000/api/v1/student"
-        // student
+        "http://localhost:4000/api/v1/student",
+        payload
       );
       if (data) {
         getAllStudentsData();
@@ -74,16 +74,14 @@ const StudentDetails = () => {
           vaccineName: "",
         }}
         validationSchema={StudentDetailschema}
-        // onSubmit={handleSubmit}
         className='student-form '
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           console.log(values);
-          alert("Form is validated! Submitting the form...");
+          handleSubmit(values);
+          resetForm();
         }}
       >
         {({ touched, errors, isSubmitting, values }) => {
-          console.log("##", errors);
-
           return (
             <Form>
               <div className='col-6 mb-4'>

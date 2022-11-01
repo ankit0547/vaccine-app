@@ -65,3 +65,9 @@ padding: 1rem;
 .error{
   color: red;
 }
+
+.icon{
+  margin-right: 2rem;
+  cursor: pointer;
+  color: blueviolet;
+}

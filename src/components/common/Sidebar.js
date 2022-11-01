@@ -7,7 +7,7 @@ const Sidebar = () => {
     "Add/Manage Student Details",
     "Manage/Update Vaccine Status",
     "Generate Report",
-    "Add/Manage Drive",
+    // "Add/Manage Drive",
   ];
   const { appActionDispatch } = useContext(AppStore);
   const handleMenuClick = (e) => {

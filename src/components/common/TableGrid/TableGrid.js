@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTable, useRowSelect, usePagination } from "react-table";
+import { FaTrash, FaEdit } from "react-icons/fa";
 const Styles = styled.div`
   /* This is required to make the table full-width */
   display: block;
@@ -54,7 +55,7 @@ const Styles = styled.div`
   }
 `;
 
-const TableGrid = ({ columns, data, handleAction }) => {
+const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -95,10 +96,22 @@ const TableGrid = ({ columns, data, handleAction }) => {
           // to the render a checkbox
           Cell: ({ row }) => (
             <>
-              <span onClick={() => handleAction(row)}>
-                Delete
-                {/* <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} /> */}
-              </span>
+              {editBtnEn && (
+                <span
+                  className='icon'
+                  onClick={() => handleAction(row, "edit")}
+                >
+                  <FaEdit />
+                </span>
+              )}
+              {deleteBtnEn && (
+                <span
+                  className='icon'
+                  onClick={() => handleAction(row, "delete")}
+                >
+                  <FaTrash />
+                </span>
+              )}
             </>
           ),
         },

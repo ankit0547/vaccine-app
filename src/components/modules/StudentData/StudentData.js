@@ -2,7 +2,22 @@ import axios from "axios";
 import moment from "moment/moment";
 import React, { useContext, useEffect } from "react";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
-import TableGrid from "../../common/TableGrid";
+import TableGrid from "../../common/TableGrid/TableGrid";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import Modal from "../../common/Modal/Modal";
+
+const tt = [
+  {
+    id: "delete-icon",
+    actionIcon: <FaTrash />,
+    className: "icon",
+  },
+  {
+    id: "editIcon",
+    actionIcon: <FaEdit />,
+    className: "icon",
+  },
+];
 
 const StudentData = ({ getAllStudentsData }) => {
   const { appActionDispatch } = useContext(AppStore);
@@ -52,15 +67,19 @@ const StudentData = ({ getAllStudentsData }) => {
     };
     return newObj;
   });
-  const handleAction = (row) => {
-    console.log("RoW", row.original);
+  const handleAction = (row, type) => {
+    console.log("RoW", row, type);
   };
   return (
     <div>
+      {/* <Modal modalId={tt}>hdfjdfhj</Modal> */}
       <TableGrid
         columns={columns}
         data={newTableData}
         handleAction={handleAction}
+        actionIcons={tt}
+        editBtnEn
+        deleteBtnEn
       />
     </div>
   );
