@@ -38,7 +38,6 @@ const VaccineDrive = () => {
     }
   };
   const handleSubmit = async (payload) => {
-    debugger;
     try {
       const data = await axios.post(
         "http://localhost:4000/api/v1/vaccineDrive",

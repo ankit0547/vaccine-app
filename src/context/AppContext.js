@@ -59,7 +59,6 @@ const AppReducer = (state, action) => {
       });
     case appActionTypes.setFilteredData:
       return produce(state, (draftState) => {
-        debugger;
         draftState.filteredData = action.payload;
       });
 
