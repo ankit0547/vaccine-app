@@ -71,3 +71,8 @@ padding: 1rem;
   cursor: pointer;
   color: blueviolet;
 }
+
+.pagination{
+  display: flex;
+  justify-content: space-between;
+}

@@ -8,6 +8,7 @@ const initialAppState = {
   appData: null,
   loading: false,
   studentData: [],
+  vaccineData: [],
 };
 
 const AppStore = createContext(initialAppState);
@@ -19,6 +20,7 @@ const appActionTypes = {
   setAppData: "SET_APP_DATA",
   IncCounter: "INC_COUNTER",
   setStudentData: "SET_STUDENT_DATA",
+  setVaccineData: "SET_VACCINE_DATA",
 };
 
 const AppReducer = (state, action) => {
@@ -47,6 +49,10 @@ const AppReducer = (state, action) => {
     case appActionTypes.setStudentData:
       return produce(state, (draftState) => {
         draftState.studentData = action.payload;
+      });
+    case appActionTypes.setVaccineData:
+      return produce(state, (draftState) => {
+        draftState.vaccineData = action.payload;
       });
 
     default:

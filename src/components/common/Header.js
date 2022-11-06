@@ -15,7 +15,7 @@ const Header = () => {
       <nav className='navbar navbar-expand-lg bg-light'>
         <div className='container'>
           <h3 className='navbar-brand' onClick={handleHome}>
-            SchoolApp
+            Vaccination-App
           </h3>
           <button
             className='navbar-toggler'

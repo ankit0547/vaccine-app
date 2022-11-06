@@ -1,7 +1,14 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
+import { appActionTypes, AppStore } from "../../../context/AppContext";
+import Report from "./Report";
 
 const GenerateReport = () => {
-  return <div className='dashboard-main'>GenerateReport</div>;
+  return (
+    <div className='dashboard-main'>
+      <Report />
+    </div>
+  );
 };
 
 export default GenerateReport;

@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useTable, useRowSelect, usePagination } from "react-table";
+import { useTable, useRowSelect, usePagination, useFilters } from "react-table";
+// import BTable from "react-bootstrap/Table";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import TableGridFooter from "./TableGridFooter";
+import TableGridHeader from "./TableGridHeader";
 const Styles = styled.div`
   /* This is required to make the table full-width */
   display: block;
@@ -55,7 +58,14 @@ const Styles = styled.div`
   }
 `;
 
-const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
+const TableGrid = ({
+  columns,
+  data,
+  handleAction,
+  deleteBtnEn,
+  editBtnEn,
+  status,
+}) => {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -81,6 +91,7 @@ const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
       data,
       initialState: { pageIndex: 0, pageSize: 4 },
     },
+    useFilters,
     usePagination,
     useRowSelect,
     (hooks) => {
@@ -94,26 +105,42 @@ const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
           Header: "Action",
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
-          Cell: ({ row }) => (
-            <>
-              {editBtnEn && (
-                <span
-                  className='icon'
-                  onClick={() => handleAction(row, "edit")}
-                >
-                  <FaEdit />
-                </span>
-              )}
-              {deleteBtnEn && (
-                <span
-                  className='icon'
-                  onClick={() => handleAction(row, "delete")}
-                >
-                  <FaTrash />
-                </span>
-              )}
-            </>
-          ),
+          Cell: ({ row }) => {
+            console.log("##ROW", row.original.vaccineStatus);
+            return (
+              <>
+                {editBtnEn && (
+                  <span
+                    className='icon'
+                    onClick={() => handleAction(row, "edit")}
+                  >
+                    <FaEdit />
+                  </span>
+                )}
+                {deleteBtnEn && (
+                  <span
+                    className='icon'
+                    onClick={() => handleAction(row, "delete")}
+                  >
+                    <FaTrash />
+                  </span>
+                )}
+                {status && (
+                  <span className='icon'>
+                    <input
+                      onClick={() => handleAction(row, "status")}
+                      class='form-check-input'
+                      type='checkbox'
+                      checked={row.original.vaccineStatus}
+                      // value={row.original.vaccineStatus}
+                      id='flexCheckDefault'
+                      disabled={row.original.vaccineStatus}
+                    />
+                  </span>
+                )}
+              </>
+            );
+          },
         },
       ]);
     }
@@ -121,7 +148,8 @@ const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
   return (
     <Styles>
       <div className='tableWrap'>
-        <table {...getTableProps()}>
+        <TableGridHeader pageSize={pageSize} setPageSize={setPageSize} />
+        <table {...getTableProps()} className='table table-striped'>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -149,54 +177,18 @@ const TableGrid = ({ columns, data, handleAction, deleteBtnEn, editBtnEn }) => {
           </tbody>
         </table>
       </div>
-      {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
-      <div className='pagination'>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-        <span>
-          | Go to page:{" "}
-          <input
-            type='number'
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-            style={{ width: "100px" }}
-          />
-        </span>{" "}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
+      <TableGridFooter
+        gotoPage={gotoPage}
+        canPreviousPage={canPreviousPage}
+        previousPage={previousPage}
+        canNextPage={canNextPage}
+        nextPage={nextPage}
+        pageCount={pageCount}
+        pageIndex={pageIndex}
+        pageOptions={pageOptions}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+      />
     </Styles>
   );
 };

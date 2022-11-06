@@ -22,7 +22,7 @@ const VaccineStatus = () => {
       const data = await axios.get("http://localhost:4000/api/v1/vaccineDrive");
       if (data) {
         appActionDispatch({
-          type: appActionTypes.setStudentData,
+          type: appActionTypes.setVaccineData,
           payload: data.data.data,
         });
         appActionDispatch({

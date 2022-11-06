@@ -38,13 +38,6 @@ const StudentDetails = () => {
   };
 
   const handleSubmit = async (payload) => {
-    debugger;
-    // e.preventDefault();
-    // const payload = {
-    //   studentName: f,
-    //     vaccineName: "",?
-    // };
-    // console.log("EEEE", e);
     try {
       const data = await axios.post(
         "http://localhost:4000/api/v1/student",
@@ -94,6 +87,8 @@ const StudentDetails = () => {
                   id='studentName'
                   name='studentName'
                   placeholder='Student Name'
+                  autoComplete='off'
+                  autofocus
                 />
                 <ErrorMessage
                   component='div'
@@ -111,6 +106,7 @@ const StudentDetails = () => {
                   id='vaccineName'
                   name='vaccineName'
                   placeholder='Vaccine Name'
+                  autoComplete='off'
                 />
                 <ErrorMessage
                   component='div'

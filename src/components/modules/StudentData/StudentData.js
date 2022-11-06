@@ -5,19 +5,7 @@ import { appActionTypes, AppStore } from "../../../context/AppContext";
 import TableGrid from "../../common/TableGrid/TableGrid";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Modal from "../../common/Modal/Modal";
-
-const tt = [
-  {
-    id: "delete-icon",
-    actionIcon: <FaTrash />,
-    className: "icon",
-  },
-  {
-    id: "editIcon",
-    actionIcon: <FaEdit />,
-    className: "icon",
-  },
-];
+import { toast } from "react-toastify";
 
 const StudentData = ({ getAllStudentsData }) => {
   const { appActionDispatch } = useContext(AppStore);
@@ -47,7 +35,7 @@ const StudentData = ({ getAllStudentsData }) => {
 
           {
             Header: "Vaccine Status",
-            accessor: "tt",
+            accessor: "vaccineStatusStr",
           },
           {
             Header: "Vaccine Name",
@@ -62,24 +50,75 @@ const StudentData = ({ getAllStudentsData }) => {
   const newTableData = studentData.map((obj) => {
     const newObj = {
       ...obj,
-      tt: obj["vaccineStatus"] === true ? "Vaccinated" : "Not Vaccinated",
+      vaccineStatusStr:
+        obj["vaccineStatus"] === true ? "Vaccinated" : "Not Vaccinated",
+      vaccineStatus: obj["vaccineStatus"] === true ? true : false,
       formattedDate: moment(obj["date"]).format("DD/MM/YYYY"),
     };
     return newObj;
   });
-  const handleAction = (row, type) => {
+  console.log("#DATA", newTableData);
+  const handleAction = async (row, type) => {
+    appActionDispatch({
+      type: appActionTypes.setLoader,
+      payload: true,
+    });
     console.log("RoW", row, type);
+    if (type === "edit") {
+      // alert("Edit");
+      const data = await axios.get("http://localhost:4000/api/v1/student");
+      if (data) {
+        getAllStudentsData();
+        appActionDispatch({
+          type: appActionTypes.setLoader,
+          payload: false,
+        });
+        const notify = () => toast("Student Edit Successfully 😲!");
+        notify();
+      }
+    }
+    if (type === "delete") {
+      // alert("Edit");
+      const data = await axios.delete(
+        `http://localhost:4000/api/v1/student/delete?id=${row.original._id}`
+      );
+      if (data) {
+        getAllStudentsData();
+        appActionDispatch({
+          type: appActionTypes.setLoader,
+          payload: false,
+        });
+        const notify = () => toast("Student Delete Successfully 😲!");
+        notify();
+      }
+    }
+    if (type === "status") {
+      // alert("Status");
+      const data = await axios.put(
+        `http://localhost:4000/api/v1/student/statusUpdate`,
+        { id: row.original._id }
+      );
+      if (data) {
+        getAllStudentsData();
+        appActionDispatch({
+          type: appActionTypes.setLoader,
+          payload: false,
+        });
+        const notify = () =>
+          toast("Student Vaccination Status Update Successfully 😲!");
+        notify();
+      }
+    }
   };
   return (
     <div>
-      {/* <Modal modalId={tt}>hdfjdfhj</Modal> */}
       <TableGrid
         columns={columns}
         data={newTableData}
         handleAction={handleAction}
-        actionIcons={tt}
         editBtnEn
         deleteBtnEn
+        status
       />
     </div>
   );
