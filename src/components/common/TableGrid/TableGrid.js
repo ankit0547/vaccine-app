@@ -75,7 +75,10 @@ const getActionCol = ({ editBtnEn, deleteBtnEn, status, handleAction }) => ({
           </span>
         )}
         {deleteBtnEn && (
-          <span className='icon' onClick={() => handleAction(row, "delete")}>
+          <span
+            className='icon delete-icon'
+            onClick={() => handleAction(row, "delete")}
+          >
             <FaTrash />
           </span>
         )}

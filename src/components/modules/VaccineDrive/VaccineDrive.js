@@ -46,6 +46,7 @@ const VaccineDrive = () => {
       );
       if (data) {
         // getAllStudentsData();
+        getAllDriveData();
         const notify = () => toast("Drive Added Successfully 😲!");
         notify();
       }

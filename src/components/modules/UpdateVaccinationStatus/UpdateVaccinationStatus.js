@@ -91,7 +91,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-        `http://localhost:4000/api/v1/report/generate-report`,
+        `http://localhost:4000/api/v1/student/statusUpdate`,
         { id: row.original._id }
       );
       if (data) {
@@ -112,9 +112,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
         columns={columns}
         data={newTableData}
         handleAction={handleAction}
-        editBtnEn
         actionCol
-        deleteBtnEn
         status
       />
     </div>

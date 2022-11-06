@@ -1,5 +1,8 @@
+import axios from "axios";
+import moment from "moment";
 import React, { useContext, useEffect } from "react";
-import { AppStore } from "../../../context/AppContext";
+import { toast } from "react-toastify";
+import { appActionTypes, AppStore } from "../../../context/AppContext";
 import TableFilterBar from "../../common/TableGrid/TableFilterBar";
 import TableGrid from "../../common/TableGrid/TableGrid";
 
@@ -13,11 +16,11 @@ function DriveData({ getAllDriveData }) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Students Detals Grid",
+        Header: "Drive Details",
         columns: [
           {
             Header: "Drive Date",
-            accessor: "driveDate",
+            accessor: "formattedDate",
           },
           {
             Header: "Number of Vaccines",
@@ -28,15 +31,38 @@ function DriveData({ getAllDriveData }) {
     ],
     []
   );
-  console.log("##DRIVE>", vaccineData);
-  const handleAction = (row, type) => {};
+
+  const newTableData = vaccineData.map((obj) => {
+    const newObj = {
+      ...obj,
+      formattedDate: moment(obj["driveDate"]).format("DD/MM/YYYY"),
+    };
+    return newObj;
+  });
+  const handleAction = async (row, type) => {
+    if (type === "delete") {
+      // alert("Edit");
+      const data = await axios.delete(
+        `http://localhost:4000/api/v1/vaccineDrive?id=${row.original._id}`
+      );
+      if (data) {
+        getAllDriveData();
+        appActionDispatch({
+          type: appActionTypes.setLoader,
+          payload: false,
+        });
+        const notify = () => toast("Drive Delete Successfully 😲!");
+        notify();
+      }
+    }
+  };
 
   return (
     <div>
       {/* <TableFilterBar isFilter /> */}
       <TableGrid
         columns={columns}
-        data={vaccineData ? vaccineData : []}
+        data={newTableData ? newTableData : []}
         handleAction={handleAction}
         editBtnEn
         deleteBtnEn

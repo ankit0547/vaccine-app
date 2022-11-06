@@ -4,7 +4,7 @@ import MenuButtons from "./MenuButtons";
 
 const Sidebar = () => {
   const buttons = [
-    "Add/Manage/Update Status Student Details",
+    "Add/Manage Student Details",
     "Add/Manage Vaccine Drive",
     "Generate Report",
     "Update Vaccine Status",
