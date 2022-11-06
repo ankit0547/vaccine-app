@@ -10,19 +10,15 @@ import StudentData from "../StudentData/StudentData";
 
 const Report = ({ getAllStudentsData }) => {
   const { appState, appActionDispatch } = useContext(AppStore);
-  const { studentData } = appState;
+  const { filteredData, studentData } = appState;
   useEffect(() => {
     getAllStudentsData();
   }, []);
   const columns = React.useMemo(
     () => [
       {
-        Header: "Students Detals Grid",
+        Header: "Students filtered details",
         columns: [
-          // {
-          //   Header: "ID",
-          //   accessor: "_id",
-          // },
           {
             Header: "Date",
             accessor: "formattedDate",
@@ -46,7 +42,7 @@ const Report = ({ getAllStudentsData }) => {
     []
   );
 
-  const newTableData = studentData?.map((obj) => {
+  const newTableData = filteredData?.map((obj) => {
     const newObj = {
       ...obj,
       vaccineStatusStr:
@@ -56,90 +52,60 @@ const Report = ({ getAllStudentsData }) => {
     };
     return newObj;
   });
-  console.log("#DATA???????????", studentData);
-  const handleAction = async (row, type) => {
+  const handleFilter = async ({ val, type }) => {
     appActionDispatch({
       type: appActionTypes.setLoader,
       payload: true,
     });
-    console.log("RoW", row, type);
-    if (type === "edit") {
-      // alert("Edit");
-      const data = await axios.get("http://localhost:4000/api/v1/student");
-      if (data) {
-        getAllStudentsData();
-        appActionDispatch({
-          type: appActionTypes.setLoader,
-          payload: false,
-        });
-        const notify = () => toast("Student Edit Successfully 😲!");
-        notify();
-      }
-    }
-    if (type === "delete") {
-      // alert("Edit");
-      const data = await axios.delete(
-        `http://localhost:4000/api/v1/student/delete?id=${row.original._id}`
-      );
-      if (data) {
-        getAllStudentsData();
-        appActionDispatch({
-          type: appActionTypes.setLoader,
-          payload: false,
-        });
-        const notify = () => toast("Student Delete Successfully 😲!");
-        notify();
-      }
-    }
-    if (type === "status") {
-      // alert("Status");
-      const data = await axios.put(
-        `http://localhost:4000/api/v1/report/generate-report`,
-        { id: row.original._id }
-      );
-      if (data) {
-        getAllStudentsData();
-        appActionDispatch({
-          type: appActionTypes.setLoader,
-          payload: false,
-        });
-        const notify = () =>
-          toast("Student Vaccination Status Update Successfully 😲!");
-        notify();
-      }
-    }
-  };
-
-  const handleFilter = async ({ val, type }) => {
-    // appActionDispatch({
-    //   type: appActionTypes.setLoader,
-    //   payload: true,
-    // });
 
     const data = await axios.get(
       `http://localhost:4000/api/v1/report/generate-report?filterCriteria=${val.target.value}`
     );
-
-    console.log("DA>>>>>>>>>>>>>>>>>>>>>>>>", data);
     if (data) {
-      // getAllStudentsData();
       appActionDispatch({
-        type: appActionTypes.setStudentData,
-        payload: data.data.data,
+        type: appActionTypes.setFilteredData,
+        payload: data.data,
       });
-      const notify = () =>
-        toast("Student Vaccination Status Update Successfully 😲!");
-      notify();
+      appActionDispatch({
+        type: appActionTypes.setLoader,
+        payload: false,
+      });
     }
+
     console.log("##>", val.target.value, type);
   };
+
+  const getData = async () => {
+    appActionDispatch({
+      type: appActionTypes.setLoader,
+      payload: true,
+    });
+
+    const data = await axios.get(
+      `http://localhost:4000/api/v1/report/generate-report?filterCriteria=all`
+    );
+    if (data) {
+      appActionDispatch({
+        type: appActionTypes.setFilteredData,
+        payload: data.data,
+      });
+      appActionDispatch({
+        type: appActionTypes.setLoader,
+        payload: false,
+      });
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <TableFilterBar handleFilter={handleFilter} />
       <TableGridNoAction
         columns={columns}
         data={newTableData ? newTableData : []}
-        handleAction={handleAction}
+        // handleAction={handleAction}
         editBtnEn
         deleteBtnEn
         // status

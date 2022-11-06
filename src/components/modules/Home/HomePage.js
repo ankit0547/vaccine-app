@@ -21,7 +21,7 @@ const HomePage = () => {
       type: appActionTypes.setStudentData,
       payload: [],
     });
-  }, []);
+  }, [defaultLandingPage]);
 
   return (
     <>

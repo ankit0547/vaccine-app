@@ -5,7 +5,10 @@ const TableFilterBar = ({ handleFilter }) => {
     <div className='d-flex justify-content-end align-items-center'>
       <div className='mx-5'>
         <select onChange={(val) => handleFilter({ val, type: "dropDown" })}>
-          <option value='All'>All</option>
+          {/* <option value='' >
+            Select Filter
+          </option> */}
+          <option value='all'>All</option>
           <option value='true'>Vaccinated</option>
           <option value='false'>Not Vaccinated</option>
         </select>

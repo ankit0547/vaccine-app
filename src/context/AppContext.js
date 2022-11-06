@@ -9,6 +9,7 @@ const initialAppState = {
   loading: false,
   studentData: [],
   vaccineData: [],
+  filteredData: [],
 };
 
 const AppStore = createContext(initialAppState);
@@ -21,9 +22,11 @@ const appActionTypes = {
   IncCounter: "INC_COUNTER",
   setStudentData: "SET_STUDENT_DATA",
   setVaccineData: "SET_VACCINE_DATA",
+  setFilteredData: "SET_FILTER_DATA",
 };
 
 const AppReducer = (state, action) => {
+  console.log("ACT>>", action.payload);
   const { type } = action;
   switch (type) {
     case appActionTypes.setTheme:
@@ -53,6 +56,11 @@ const AppReducer = (state, action) => {
     case appActionTypes.setVaccineData:
       return produce(state, (draftState) => {
         draftState.vaccineData = action.payload;
+      });
+    case appActionTypes.setFilteredData:
+      return produce(state, (draftState) => {
+        debugger;
+        draftState.filteredData = action.payload;
       });
 
     default:
