@@ -9,7 +9,8 @@ const Sidebar = () => {
     "Generate Report",
     "Update Vaccine Status",
   ];
-  const { appActionDispatch } = useContext(AppStore);
+  const { appActionDispatch, appState } = useContext(AppStore);
+  const { defaultLandingPage } = appState;
   const handleMenuClick = (e) => {
     const index = buttons.findIndex((ele) => ele === e.target.innerText);
     appActionDispatch({
@@ -23,6 +24,7 @@ const Sidebar = () => {
         <MenuButtons
           key={index}
           btnName={item}
+          // className={defaultLandingPage === index ? "selectedTab" : ""}
           handleSideMenuClick={handleMenuClick}
         />
       ))}

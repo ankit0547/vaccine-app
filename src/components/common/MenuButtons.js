@@ -1,5 +1,3 @@
-import React from "react";
-
 const MenuButtons = ({ btnName, handleSideMenuClick }) => {
   return (
     <div className='d-grid gap-4'>

@@ -14,12 +14,8 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Students Detals Grid",
+        Header: "Update Vaccination Status",
         columns: [
-          // {
-          //   Header: "ID",
-          //   accessor: "_id",
-          // },
           {
             Header: "Date",
             accessor: "formattedDate",

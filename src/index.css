@@ -4,6 +4,8 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
     background-color: aliceblue;
+    /* background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%); */
+    /* background-repeat: no-repeat; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -18,7 +20,7 @@ code {
   background-color: #383b3b8c;
   z-index: 1;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .app-loader .spinner-border{
@@ -34,9 +36,16 @@ code {
   width: 230px;
 }
 
+.selectedTab{
+  border: 3px solid red;
+}
+
 .sidebar button {
   margin-bottom: 1rem;
-  background-color: bisque;
+  /* background-color: bisque; */
+    background-image: linear-gradient(135deg, #007adf 10%, #00ecbc 100%);
+    font-weight: bold;
+    color: white;
 }
 
 .navbar-brand{
@@ -45,12 +54,17 @@ code {
 
 .dashboard-main{
 margin-left: 1rem;
-height: calc(100vh - 7rem);
+/* height: calc(100vh - 7rem); */
 width: 100%;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-background-color: white;
+/* background-color: white; */
+background-image: linear-gradient(135deg, #bdc2e8 10%, #e6dee9 100%);
 padding: 1rem;
 }
+
+/* .main{
+  background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%);
+} */
 
 .card-container .card {
   margin-right: 2rem;
@@ -70,6 +84,7 @@ padding: 1rem;
   margin-right: 2rem;
   cursor: pointer;
   color: blueviolet;
+  /* background-image: linear-gradient(135deg, #007adf 10%, #00ecbc 100%); */
 }
 
 .pagination{
