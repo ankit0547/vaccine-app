@@ -41,7 +41,6 @@ function DriveData({ getAllDriveData }) {
   });
   const handleAction = async (row, type) => {
     if (type === "delete") {
-      // alert("Edit");
       const data = await axios.delete(
         `http://localhost:4000/api/v1/vaccineDrive?id=${row.original._id}`
       );
@@ -59,7 +58,6 @@ function DriveData({ getAllDriveData }) {
 
   return (
     <div>
-      {/* <TableFilterBar isFilter /> */}
       <TableGrid
         columns={columns}
         data={newTableData ? newTableData : []}
