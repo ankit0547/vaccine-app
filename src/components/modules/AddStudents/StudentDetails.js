@@ -61,6 +61,7 @@ const StudentDetails = () => {
 
   return (
     <div className='dashboard-main'>
+      <h1 className='display-6 mb-4'>Add/Manage Student Details</h1>
       <Formik
         initialValues={{
           studentName: "",

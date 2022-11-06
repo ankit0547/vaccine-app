@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
-import Report from "./Report";
+import UpdateVaccinationStatus from "../UpdateVaccinationStatus/UpdateVaccinationStatus";
 
-const GenerateReport = () => {
+const ManageVaccineStatus = () => {
   const { appActionDispatch } = useContext(AppStore);
   const getAllStudentsData = async () => {
     appActionDispatch({
@@ -30,10 +30,10 @@ const GenerateReport = () => {
   };
   return (
     <div className='dashboard-main'>
-      <h1 className='display-6 mb-4'>Generate Report</h1>
-      <Report getAllStudentsData={getAllStudentsData} />
+      <h1 className='display-5 mb-4'>Update Vaccination Status</h1>
+      <UpdateVaccinationStatus getAllStudentsData={getAllStudentsData} />
     </div>
   );
 };
 
-export default GenerateReport;
+export default ManageVaccineStatus;

@@ -1,14 +1,13 @@
 import axios from "axios";
-import moment from "moment/moment";
+import moment from "moment";
 import React, { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
 import TableGrid from "../../common/TableGrid/TableGrid";
-import { toast } from "react-toastify";
 
-const StudentData = ({ getAllStudentsData }) => {
+const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
   const { appState, appActionDispatch } = useContext(AppStore);
   const { studentData } = appState;
-
   useEffect(() => {
     getAllStudentsData();
   }, []);
@@ -92,7 +91,7 @@ const StudentData = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-        `http://localhost:4000/api/v1/student/statusUpdate`,
+        `http://localhost:4000/api/v1/report/generate-report`,
         { id: row.original._id }
       );
       if (data) {
@@ -114,11 +113,12 @@ const StudentData = ({ getAllStudentsData }) => {
         data={newTableData}
         handleAction={handleAction}
         editBtnEn
-        deleteBtnEn
         actionCol
+        deleteBtnEn
+        status
       />
     </div>
   );
 };
 
-export default StudentData;
+export default UpdateVaccinationStatus;

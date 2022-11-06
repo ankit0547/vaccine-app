@@ -97,7 +97,7 @@ const getActionCol = ({ editBtnEn, deleteBtnEn, status, handleAction }) => ({
   },
 });
 
-const TableGrid = ({
+const TableGridNoAction = ({
   columns,
   data,
   handleAction,
@@ -133,19 +133,7 @@ const TableGrid = ({
     },
     useFilters,
     usePagination,
-    useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.unshift((columns) => [
-        ...columns,
-        getActionCol({
-          actionCol,
-          editBtnEn,
-          deleteBtnEn,
-          status,
-          handleAction,
-        }),
-      ]);
-    }
+    useRowSelect
   );
   return (
     <Styles>
@@ -195,4 +183,4 @@ const TableGrid = ({
   );
 };
 
-export default TableGrid;
+export default TableGridNoAction;

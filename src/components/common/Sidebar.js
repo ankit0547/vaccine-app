@@ -4,10 +4,10 @@ import MenuButtons from "./MenuButtons";
 
 const Sidebar = () => {
   const buttons = [
-    "Add/Manage Student Details",
-    "Manage/Update Vaccine Status",
+    "Add/Manage/Update Status Student Details",
+    "Add/Manage Vaccine Drive",
     "Generate Report",
-    // "Add/Manage Drive",
+    "Update Vaccine Status",
   ];
   const { appActionDispatch } = useContext(AppStore);
   const handleMenuClick = (e) => {

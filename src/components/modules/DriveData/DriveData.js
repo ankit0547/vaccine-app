@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { AppStore } from "../../../context/AppContext";
+import TableFilterBar from "../../common/TableGrid/TableFilterBar";
 import TableGrid from "../../common/TableGrid/TableGrid";
 
-function DriveDrive({ getAllDriveData }) {
+function DriveData({ getAllDriveData }) {
   const { appState, appActionDispatch } = useContext(AppStore);
   const { vaccineData } = appState;
 
@@ -32,16 +33,17 @@ function DriveDrive({ getAllDriveData }) {
 
   return (
     <div>
+      {/* <TableFilterBar isFilter /> */}
       <TableGrid
         columns={columns}
         data={vaccineData ? vaccineData : []}
         handleAction={handleAction}
         editBtnEn
         deleteBtnEn
-        // status
+        actionCol // status
       />
     </div>
   );
 }
 
-export default DriveDrive;
+export default DriveData;

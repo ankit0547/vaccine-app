@@ -3,15 +3,16 @@ import { toast } from "react-toastify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import DriveDrive from "../DriveData/DriveDrive";
+import DriveDrive from "../DriveData/DriveData";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
+import DriveData from "../DriveData/DriveData";
 
 const StudentDetailschema = Yup.object().shape({
   driveDate: Yup.date().required("Student name required"),
   numberOfVaccines: Yup.number().required("Vaccine name is required"),
 });
 
-const VaccineStatus = () => {
+const VaccineDrive = () => {
   const { appActionDispatch } = useContext(AppStore);
   const getAllDriveData = async () => {
     appActionDispatch({
@@ -60,6 +61,7 @@ const VaccineStatus = () => {
   };
   return (
     <div className='dashboard-main'>
+      <h1 className='display-6'> Add/Manage Drive </h1>
       <Formik
         initialValues={{
           driveDate: "",
@@ -122,9 +124,9 @@ const VaccineStatus = () => {
         }}
       </Formik>
 
-      <DriveDrive getAllDriveData={getAllDriveData} />
+      <DriveData getAllDriveData={getAllDriveData} />
     </div>
   );
 };
 
-export default VaccineStatus;
+export default VaccineDrive;
