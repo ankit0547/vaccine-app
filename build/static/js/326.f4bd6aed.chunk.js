@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvaccine_app=self.webpackChunkvaccine_app||[]).push([[326],{326:function(a,e,n){n.r(e);n(2791);var c=n(184);e.default=function(){return(0,c.jsx)("div",{className:"dashboard-main",children:"ManageDrive"})}}}]);
+//# sourceMappingURL=326.f4bd6aed.chunk.js.map

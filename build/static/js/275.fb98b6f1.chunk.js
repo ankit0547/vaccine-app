@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvaccine_app=self.webpackChunkvaccine_app||[]).push([[275],{1275:function(e,a,n){n.r(a);n(2791);var c=n(184);a.default=function(){return(0,c.jsx)("div",{className:"dashboard-main",children:"GenerateReport"})}}}]);
+//# sourceMappingURL=275.fb98b6f1.chunk.js.map
