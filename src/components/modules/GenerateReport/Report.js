@@ -59,7 +59,7 @@ const Report = ({ getAllStudentsData }) => {
     });
 
     const data = await axios.get(
-      `http://localhost:4000/api/v1/report/generate-report?filterCriteria=${val.target.value}`
+      `http://localhost:4800/api/v1/report/generate-report?filterCriteria=${val.target.value}`
     );
     if (data) {
       appActionDispatch({
@@ -82,7 +82,7 @@ const Report = ({ getAllStudentsData }) => {
     });
 
     const data = await axios.get(
-      `http://localhost:4000/api/v1/report/generate-report?filterCriteria=all`
+      `http://localhost:4800/api/v1/report/generate-report?filterCriteria=all`
     );
     if (data) {
       appActionDispatch({

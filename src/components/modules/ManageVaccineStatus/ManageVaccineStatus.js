@@ -11,7 +11,7 @@ const ManageVaccineStatus = () => {
       payload: true,
     });
     try {
-      const data = await axios.get("http://localhost:4000/api/v1/student");
+      const data = await axios.get("http://localhost:4800/api/v1/student");
       if (data) {
         appActionDispatch({
           type: appActionTypes.setStudentData,

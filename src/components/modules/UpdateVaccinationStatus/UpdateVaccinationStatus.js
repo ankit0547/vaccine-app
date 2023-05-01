@@ -58,7 +58,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     console.log("RoW", row, type);
     if (type === "edit") {
       // alert("Edit");
-      const data = await axios.get("http://localhost:4000/api/v1/student");
+      const data = await axios.get("http://localhost:4800/api/v1/student");
       if (data) {
         getAllStudentsData();
         appActionDispatch({
@@ -72,7 +72,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "delete") {
       // alert("Edit");
       const data = await axios.delete(
-        `http://localhost:4000/api/v1/student/delete?id=${row.original._id}`
+        `http://localhost:4800/api/v1/student/delete?id=${row.original._id}`
       );
       if (data) {
         getAllStudentsData();
@@ -87,7 +87,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-        `http://localhost:4000/api/v1/student/statusUpdate`,
+        `http://localhost:4800/api/v1/student/statusUpdate`,
         { id: row.original._id }
       );
       if (data) {
