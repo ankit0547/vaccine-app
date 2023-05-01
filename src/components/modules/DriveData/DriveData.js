@@ -42,7 +42,7 @@ function DriveData({ getAllDriveData }) {
   const handleAction = async (row, type) => {
     if (type === "delete") {
       const data = await axios.delete(
-        `http://localhost:4000/api/v1/vaccineDrive?id=${row.original._id}`
+        `http://localhost:4800/vaccineDrive?id=${row.original._id}`
       );
       if (data) {
         getAllDriveData();

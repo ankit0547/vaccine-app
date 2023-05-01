@@ -6,7 +6,7 @@ const Sidebar = () => {
   const buttons = [
     "Add/Manage Student Details",
     "Add/Manage Vaccine Drive",
-    "Generate Report",
+    // "Generate Report",
     "Update Vaccine Status",
   ];
   const { appActionDispatch, appState } = useContext(AppStore);

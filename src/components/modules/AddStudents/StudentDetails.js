@@ -19,7 +19,7 @@ const StudentDetails = () => {
       payload: true,
     });
     try {
-      const data = await axios.get("http://localhost:4000/api/v1/student");
+      const data = await axios.get("http://localhost:4800/student");
       if (data) {
         appActionDispatch({
           type: appActionTypes.setStudentData,
@@ -39,10 +39,7 @@ const StudentDetails = () => {
 
   const handleSubmit = async (payload) => {
     try {
-      const data = await axios.post(
-        "http://localhost:4000/api/v1/student",
-        payload
-      );
+      const data = await axios.post("http://localhost:4800/student", payload);
       if (data) {
         getAllStudentsData();
         const notify = () => toast("Student Added Successfully 😲!");

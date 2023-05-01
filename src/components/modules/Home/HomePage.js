@@ -5,9 +5,9 @@ const StudentDetails = React.lazy(() =>
   import("../AddStudents/StudentDetails")
 );
 const VaccineDrive = React.lazy(() => import("../VaccineDrive/VaccineDrive"));
-const GenerateReport = React.lazy(() =>
-  import("../GenerateReport/GenerateReport")
-);
+// const GenerateReport = React.lazy(() =>
+//   import("../GenerateReport/GenerateReport")
+// );
 const ManageVaccineStatus = React.lazy(() =>
   import("../ManageVaccineStatus/ManageVaccineStatus")
 );
@@ -28,7 +28,7 @@ const HomePage = () => {
       {defaultLandingPage === 0 && <LandingPage />}
       {defaultLandingPage === 1 && <StudentDetails />}
       {defaultLandingPage === 2 && <VaccineDrive />}
-      {defaultLandingPage === 3 && <GenerateReport />}
+      {/* {defaultLandingPage === 3 && <GenerateReport />} */}
       {defaultLandingPage === 4 && <ManageVaccineStatus />}
     </>
   );

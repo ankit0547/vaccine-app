@@ -44,7 +44,7 @@ const StudentData = ({ getAllStudentsData }) => {
     []
   );
 
-  const newTableData = studentData.map((obj) => {
+  const newTableData = studentData?.map((obj) => {
     const newObj = {
       ...obj,
       vaccineStatusStr:
@@ -63,7 +63,7 @@ const StudentData = ({ getAllStudentsData }) => {
     console.log("RoW", row, type);
     if (type === "edit") {
       // alert("Edit");
-      const data = await axios.get("http://localhost:4000/api/v1/student");
+      const data = await axios.get("http://localhost:4800/student");
       if (data) {
         getAllStudentsData();
         appActionDispatch({
@@ -77,7 +77,7 @@ const StudentData = ({ getAllStudentsData }) => {
     if (type === "delete") {
       // alert("Edit");
       const data = await axios.delete(
-        `http://localhost:4000/api/v1/student/delete?id=${row.original._id}`
+        `http://localhost:4800/student/delete?id=${row.original._id}`
       );
       if (data) {
         getAllStudentsData();
@@ -92,7 +92,7 @@ const StudentData = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-        `http://localhost:4000/api/v1/student/statusUpdate`,
+        `http://localhost:4800/student/statusUpdate`,
         { id: row.original._id }
       );
       if (data) {
@@ -111,7 +111,7 @@ const StudentData = ({ getAllStudentsData }) => {
     <div>
       <TableGrid
         columns={columns}
-        data={newTableData}
+        data={newTableData ? newTableData : []}
         handleAction={handleAction}
         editBtnEn
         deleteBtnEn

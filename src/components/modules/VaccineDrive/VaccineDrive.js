@@ -20,7 +20,7 @@ const VaccineDrive = () => {
       payload: true,
     });
     try {
-      const data = await axios.get("http://localhost:4000/api/v1/vaccineDrive");
+      const data = await axios.get("http://localhost:4800/vaccineDrive");
       if (data) {
         appActionDispatch({
           type: appActionTypes.setVaccineData,
@@ -40,7 +40,7 @@ const VaccineDrive = () => {
   const handleSubmit = async (payload) => {
     try {
       const data = await axios.post(
-        "http://localhost:4000/api/v1/vaccineDrive",
+        "http://localhost:4800/vaccineDrive",
         payload
       );
       if (data) {

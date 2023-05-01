@@ -1,32 +1,38 @@
 import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
+import { API } from "../../../utils/ApiCall";
 
 const LandingPage = () => {
   const { appActionDispatch } = useContext(AppStore);
   const getRandomUser = async () => {
     console.log("#>>>>");
-    appActionDispatch({
-      type: appActionTypes.setLoader,
-      payload: true,
-    });
-    try {
-      const data = await axios.get("http://localhost:4000/api/v1/landing");
-      if (data) {
-        appActionDispatch({
-          type: appActionTypes.setAppData,
-          payload: data.data.data,
-        });
-        appActionDispatch({
-          type: appActionTypes.setLoader,
-          payload: false,
-        });
-      }
-      console.log("#DD>", data);
-      return data;
-    } catch (err) {
-      console.log("error: ", err);
-    }
+    debugger;
+    const action = {
+      appActionDispatch,
+    };
+    API(action);
+    // appActionDispatch({
+    //   type: appActionTypes.setLoader,
+    //   payload: true,
+    // });
+    // try {
+    //   const data = await axios.get("http://localhost:4000/api/v1/landing");
+    //   if (data) {
+    //     appActionDispatch({
+    //       type: appActionTypes.setAppData,
+    //       payload: data.data.data,
+    //     });
+    //     appActionDispatch({
+    //       type: appActionTypes.setLoader,
+    //       payload: false,
+    //     });
+    //   }
+    //   console.log("#DD>", data);
+    //   return data;
+    // } catch (err) {
+    //   console.log("error: ", err);
+    // }
   };
 
   useEffect(() => {
