@@ -7,8 +7,7 @@ const LandingPage = () => {
   const { appActionDispatch } = useContext(AppStore);
   const getRandomUser = async () => {
     console.log("#>>>>");
-<<<<<<< HEAD
-    debugger;
+    // debugger;
     const action = {
       appActionDispatch,
     };
@@ -34,29 +33,6 @@ const LandingPage = () => {
     // } catch (err) {
     //   console.log("error: ", err);
     // }
-=======
-    appActionDispatch({
-      type: appActionTypes.setLoader,
-      payload: true,
-    });
-    try {
-      const data = await axios.get("http://localhost:4800/api/v1/landing");
-      if (data) {
-        appActionDispatch({
-          type: appActionTypes.setAppData,
-          payload: data.data.data,
-        });
-        appActionDispatch({
-          type: appActionTypes.setLoader,
-          payload: false,
-        });
-      }
-      console.log("#DD>", data);
-      return data;
-    } catch (err) {
-      console.log("error: ", err);
-    }
->>>>>>> d93ecd7945221ac2bd9b2ab32aeb0929d252c715
   };
 
   useEffect(() => {
