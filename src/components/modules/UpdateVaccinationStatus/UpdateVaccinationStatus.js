@@ -76,11 +76,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "delete") {
       // alert("Edit");
       const data = await axios.delete(
-<<<<<<< HEAD
         `http://localhost:4800/student/delete?id=${row.original._id}`
-=======
-        `http://localhost:4800/api/v1/student/delete?id=${row.original._id}`
->>>>>>> d93ecd7945221ac2bd9b2ab32aeb0929d252c715
       );
       if (data) {
         getAllStudentsData();
@@ -95,11 +91,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-<<<<<<< HEAD
         `http://localhost:4800/student/statusUpdate`,
-=======
-        `http://localhost:4800/api/v1/student/statusUpdate`,
->>>>>>> d93ecd7945221ac2bd9b2ab32aeb0929d252c715
         { id: row.original._id }
       );
       if (data) {

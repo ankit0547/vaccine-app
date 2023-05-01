@@ -19,11 +19,7 @@ const StudentDetails = () => {
       payload: true,
     });
     try {
-<<<<<<< HEAD
       const data = await axios.get("http://localhost:4800/student");
-=======
-      const data = await axios.get("http://localhost:4800/api/v1/student");
->>>>>>> d93ecd7945221ac2bd9b2ab32aeb0929d252c715
       if (data) {
         appActionDispatch({
           type: appActionTypes.setStudentData,
