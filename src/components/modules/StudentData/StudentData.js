@@ -115,7 +115,7 @@ const StudentData = ({ getAllStudentsData }) => {
         columns={columns}
         data={newTableData ? newTableData : []}
         handleAction={handleAction}
-        editBtnEn
+        // editBtnEn
         deleteBtnEn
         actionCol
       />

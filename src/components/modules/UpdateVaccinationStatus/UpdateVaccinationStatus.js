@@ -87,7 +87,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     if (type === "status") {
       // alert("Status");
       const data = await axios.put(
-        `http://localhost:4800/student/statusUpdate`,
+        `http://localhost:4801/student/statusUpdate`,
         { id: row.original._id }
       );
       if (data) {

@@ -62,7 +62,7 @@ function DriveData({ getAllDriveData }) {
         columns={columns}
         data={newTableData ? newTableData : []}
         handleAction={handleAction}
-        editBtnEn
+        // editBtnEn
         deleteBtnEn
         actionCol // status
       />
