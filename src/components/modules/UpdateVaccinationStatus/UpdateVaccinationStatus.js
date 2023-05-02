@@ -39,7 +39,7 @@ const UpdateVaccinationStatus = ({ getAllStudentsData }) => {
     []
   );
 
-  const newTableData = studentData.map((obj) => {
+  const newTableData = studentData?.map((obj) => {
     const newObj = {
       ...obj,
       vaccineStatusStr:

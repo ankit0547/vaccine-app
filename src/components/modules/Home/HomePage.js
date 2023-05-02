@@ -22,14 +22,14 @@ const HomePage = () => {
       payload: [],
     });
   }, [defaultLandingPage]);
-
+  console.log("defaultLandingPage", defaultLandingPage);
   return (
     <>
       {defaultLandingPage === 0 && <LandingPage />}
       {defaultLandingPage === 1 && <StudentDetails />}
       {defaultLandingPage === 2 && <VaccineDrive />}
       {/* {defaultLandingPage === 3 && <GenerateReport />} */}
-      {defaultLandingPage === 4 && <ManageVaccineStatus />}
+      {defaultLandingPage === 3 && <ManageVaccineStatus />}
     </>
   );
 };

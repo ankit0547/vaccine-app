@@ -15,7 +15,7 @@ const ManageVaccineStatus = () => {
       if (data) {
         appActionDispatch({
           type: appActionTypes.setStudentData,
-          payload: data.data.data,
+          payload: data.data,
         });
         appActionDispatch({
           type: appActionTypes.setLoader,
