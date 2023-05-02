@@ -51,6 +51,7 @@ const AppReducer = (state, action) => {
       });
     case appActionTypes.setStudentData:
       return produce(state, (draftState) => {
+        // debugger;
         draftState.studentData = action.payload;
       });
     case appActionTypes.setVaccineData:

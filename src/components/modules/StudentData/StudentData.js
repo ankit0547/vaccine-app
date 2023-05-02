@@ -1,6 +1,6 @@
 import axios from "axios";
 import moment from "moment/moment";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { appActionTypes, AppStore } from "../../../context/AppContext";
 import TableGrid from "../../common/TableGrid/TableGrid";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const StudentData = ({ getAllStudentsData }) => {
   const { appState, appActionDispatch } = useContext(AppStore);
   const { studentData } = appState;
+  // const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     getAllStudentsData();
@@ -54,6 +55,7 @@ const StudentData = ({ getAllStudentsData }) => {
     };
     return newObj;
   });
+
   console.log("#DATA", newTableData);
   const handleAction = async (row, type) => {
     appActionDispatch({

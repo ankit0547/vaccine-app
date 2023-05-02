@@ -3,7 +3,7 @@ import { appActionTypes } from "../context/AppContext";
 const URL = process.env.REACT_APP_LOCAL_BASE_URL;
 
 export const API = async (action, payload) => {
-  debugger;
+  // debugger;
   try {
     const data = await axios.get("http://localhost:4800/landing");
     if (data) {

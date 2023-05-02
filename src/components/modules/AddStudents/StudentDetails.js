@@ -20,10 +20,11 @@ const StudentDetails = () => {
     });
     try {
       const data = await axios.get("http://localhost:4800/student");
+      // debugger;
       if (data) {
         appActionDispatch({
           type: appActionTypes.setStudentData,
-          payload: data.data.data,
+          payload: data.data,
         });
         appActionDispatch({
           type: appActionTypes.setLoader,
